@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.SanPham;
-import com.example.demo.rebository.SanPhamRepository;
 import com.example.demo.service.ISanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,10 +42,10 @@ public class SanPhamController {
         return "redirect:/san-pham";
     }
     @PostMapping("/delete")
-    public String delete(@RequestParam("name") String name,
+    public String delete(@RequestParam("id") int id,
                          RedirectAttributes redirectAttributes){
 
-        sanPhamService.delete(name);
+        sanPhamService.delete(id);
 
         redirectAttributes.addFlashAttribute("message","Xóa sản phẩm thành công");
 
@@ -63,6 +62,15 @@ public class SanPhamController {
     public String update(SanPham sanPham){
         sanPhamService.update(sanPham);
         return "redirect:/san-pham";
+    }
+    @GetMapping("/search")
+    public String search(@RequestParam("name") String name, Model model){
+
+        List<SanPham> list = sanPhamService.searchByName(name);
+
+        model.addAttribute("sanPhamList", list);
+
+        return "sanPham/list";
     }
 
 

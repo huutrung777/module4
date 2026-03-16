@@ -26,9 +26,9 @@ static {
     }
 
     @Override
-    public boolean delete(String name) {
+    public boolean delete(int id) {
         for (SanPham sp : sanPhamList) {
-            if (sp.getName().equals(name)) {
+            if (sp.getId() == id) {
                 sanPhamList.remove(sp);
                 return true;
             }
@@ -56,5 +56,18 @@ static {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<SanPham> searchByName(String name) {
+
+        List<SanPham> list = new ArrayList<>();
+
+        for (SanPham sp : sanPhamList) {
+            if (sp.getName().contains(name)) {
+                list.add(sp);
+            }
+        }
+        return list;
     }
 }

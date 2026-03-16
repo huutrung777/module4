@@ -21,8 +21,8 @@ private SanPhamRepository sanPhamRepository;
     }
 
     @Override
-    public boolean delete(String name) {
-        return sanPhamRepository.delete(name);
+    public boolean delete(int id) {
+        return sanPhamRepository.delete(id);
     }
 
     @Override
@@ -33,5 +33,9 @@ private SanPhamRepository sanPhamRepository;
     @Override
     public SanPham findById(int id) {
         return sanPhamRepository.findById(id);
+    }
+    @Override
+    public List<SanPham> searchByName(String name) {
+        return sanPhamRepository.searchByName(name);
     }
 }
