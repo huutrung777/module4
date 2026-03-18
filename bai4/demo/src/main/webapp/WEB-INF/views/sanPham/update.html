@@ -15,10 +15,7 @@
 
     <form th:action="@{/san-pham/update}" method="post">
 
-        <div class="mb-3">
-            <label>ID</label>
-            <input type="text" name="id" th:value="${sanPham.id}" class="form-control" readonly>
-        </div>
+        <input type="hidden" name="id" th:value="${sanPham.id}">
 
         <div class="mb-3">
             <label>Tên sản phẩm</label>
@@ -31,9 +28,6 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Cập nhật</button>
-
-        <a th:href="@{/san-pham}" class="btn btn-secondary">Quay lại</a>
-
     </form>
 
 </div>

@@ -29,15 +29,12 @@ public class SanPhamController {
         return "sanPham/add";
     }
     @PostMapping("/add")
-    public String save(@RequestParam(name = "id") int id,
-                       @RequestParam(name = "name") String name,
-                       @RequestParam(name = "price") double price,
+    public String save(SanPham sanPham,
                        RedirectAttributes redirectAttributes){
 
-        SanPham sanPham = new SanPham(id, name, price);
         sanPhamService.addSanPham(sanPham);
 
-        redirectAttributes.addFlashAttribute("message","Thêm sản phẩm thành công");
+        redirectAttributes.addFlashAttribute("message","Thêm thành công");
 
         return "redirect:/san-pham";
     }
