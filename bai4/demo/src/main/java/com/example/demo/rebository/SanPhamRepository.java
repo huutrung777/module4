@@ -1,89 +1,55 @@
 package com.example.demo.rebository;
 
 import com.example.demo.entity.SanPham;
-import com.example.demo.util.ConnectionUtil;
-import jakarta.persistence.TypedQuery;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
+@Transactional
 public class SanPhamRepository implements ISanPhamRepository {
-//private static List<SanPham> sanPhamList = new ArrayList<>();
-//static {
-//    sanPhamList.add(new SanPham(1,"Iphone",1000));
-//    sanPhamList.add(new SanPham(2,"Galaxy",900));
-//    sanPhamList.add(new SanPham(3,"Macbook",2000));
-//
-//}
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Override
     public List<SanPham> findAll() {
-        Session session = ConnectionUtil.sessionFactory.openSession();
-        TypedQuery<SanPham> query = session.createQuery("from SanPham", SanPham.class);
-        List<SanPham> sanPhamList = query.getResultList();
-        session.close();
-        return sanPhamList;
+        return entityManager.createQuery("FROM SanPham", SanPham.class)
+                .getResultList();
     }
 
     @Override
-    public boolean addSanPham(SanPham sanPham) {
-        Session session = ConnectionUtil.sessionFactory.openSession();
-        Transaction transaction = session.getTransaction();
-        transaction.begin();
-        session.save(sanPham);
-        transaction.commit();
-        session.close();
-        return true;
+    public void addSanPham(SanPham sanPham) {
+        entityManager.persist(sanPham);
     }
 
     @Override
-    public boolean delete(int id) {
-        Session session = ConnectionUtil.sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-
-        SanPham sp = session.find(SanPham.class, id);
-
+    public void delete(int id) {
+        SanPham sp = entityManager.find(SanPham.class, id);
         if (sp != null) {
-            session.delete(sp);
-            transaction.commit();
-            session.close();
-            return true;
+            entityManager.remove(sp);
         }
-
-        session.close();
-        return false;
     }
 
     @Override
-    public boolean update(SanPham sanPham) {
-        Session session = ConnectionUtil.sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-
-        session.update(sanPham);
-
-        transaction.commit();
-        session.close();
-
-        return true;
+    public void update(SanPham sanPham) {
+        SanPham sp = entityManager.find(SanPham.class, sanPham.getId());
+        if (sp != null) {
+            sp.setName(sanPham.getName());
+            sp.setPrice(sanPham.getPrice());
+        }
     }
-
     @Override
     public SanPham findById(int id) {
-        Session session = ConnectionUtil.sessionFactory.openSession();
-        SanPham sp = session.find(SanPham.class, id);
-        session.close();
-        return sp;
+        return entityManager.find(SanPham.class, id);
     }
 
     @Override
     public List<SanPham> searchByName(String name) {
-        Session session = ConnectionUtil.sessionFactory.openSession();
-        TypedQuery<SanPham> query = session.createQuery(
-                "from SanPham where name like :name", SanPham.class
-        );
-        query.setParameter("name", "%" + name + "%");
-        List<SanPham> list = query.getResultList();
-        session.close();
-        return list;
+        return entityManager.createQuery(
+                        "FROM SanPham WHERE name LIKE :name", SanPham.class)
+                .setParameter("name", "%" + name + "%")
+                .getResultList();
     }
 }

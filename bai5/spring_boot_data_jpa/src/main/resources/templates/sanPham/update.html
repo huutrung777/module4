@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cập nhật sản phẩm</title>
+    <th:block th:insert="~{layout/layout::library}"/>
+</head>
+
+<body>
+
+<div class="container mt-4">
+
+    <h2>Cập nhật sản phẩm</h2>
+
+    <form th:action="@{/san-pham/update}" method="post">
+
+        <input type="hidden" name="id" th:value="${sanPham.id}">
+
+        <div class="mb-3">
+            <label>Tên sản phẩm</label>
+            <input type="text" name="name" th:value="${sanPham.name}" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Giá</label>
+            <input type="text" name="price" th:value="${sanPham.price}" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </form>
+
+</div>
+
+</body>
+</html>
