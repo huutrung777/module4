@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Chỉnh sửa bài viết</title>
+  <style>
+    /* Toàn bộ trang */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Card chứa form */
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1c1e21;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    /* Group các ô nhập liệu */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #4b4f56;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #dddfe2;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 15px;
+      transition: all 0.2s ease;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #1877f2;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Nút bấm */
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    button {
+      flex: 2;
+      background-color: #1877f2;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #166fe5;
+    }
+
+    .btn-cancel {
+      flex: 1;
+      background-color: #e4e6eb;
+      color: #4b4f56;
+      text-decoration: none;
+      text-align: center;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+
+    .btn-cancel:hover {
+      background-color: #d8dadf;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Chỉnh sửa bài viết</h2>
+
+  <form th:action="@{/blog/update}" th:object="${blog}" method="post">
+    <input type="hidden" th:field="*{id}">
+
+    <div class="form-group">
+      <label>Tiêu đề:</label>
+      <input type="text" th:field="*{tieuDe}" placeholder="Nhập tiêu đề bài viết" required />
+    </div>
+
+    <div class="form-group">
+      <label>Tóm tắt:</label>
+      <input type="text" th:field="*{tomTat}" placeholder="Mô tả ngắn gọn" />
+    </div>
+
+    <div class="form-group">
+      <label>Nội dung:</label>
+      <textarea th:field="*{noiDung}" placeholder="Viết nội dung tại đây..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Tác giả:</label>
+      <input type="text" th:field="*{tacGia}" placeholder="Tên tác giả" />
+    </div>
+
+    <div class="button-group">
+      <button type="submit">Cập nhật</button>
+      <a th:href="@{/blog}" class="btn-cancel">Hủy bỏ</a>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

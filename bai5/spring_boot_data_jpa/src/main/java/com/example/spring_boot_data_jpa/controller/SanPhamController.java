@@ -31,21 +31,15 @@ public class SanPhamController {
     @PostMapping("/add")
     public String save(SanPham sanPham,
                        RedirectAttributes redirectAttributes){
-
         sanPhamService.addSanPham(sanPham);
-
         redirectAttributes.addFlashAttribute("message","Thêm thành công");
-
         return "redirect:/san-pham";
     }
     @PostMapping("/delete")
     public String delete(@RequestParam("id") int id,
                          RedirectAttributes redirectAttributes){
-
         sanPhamService.delete(id);
-
         redirectAttributes.addFlashAttribute("message","Xóa sản phẩm thành công");
-
         return "redirect:/san-pham";
     }
     @GetMapping("/update")
