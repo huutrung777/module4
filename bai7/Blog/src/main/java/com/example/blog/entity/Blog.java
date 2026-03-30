@@ -21,5 +21,6 @@ public class Blog {
     @Column(columnDefinition = "TEXT")
     private String noiDung;
     private String tacGia;
+    
 
 }

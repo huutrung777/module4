@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký thành công</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 25px;
+        }
+
+        p {
+            font-size: 15px;
+            color: #333;
+            margin: 8px 0;
+        }
+
+        strong {
+            color: #555;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Đăng ký thành công!</h2>
+
+    <p><strong>Firstname:</strong> <span th:text="${user.firstname}"></span></p>
+    <p><strong>Lastname:</strong> <span th:text="${user.lastname}"></span></p>
+    <p><strong>Số điện thoại:</strong> <span th:text="${user.phoneNumber}"></span></p>
+    <p><strong>Tuổi:</strong> <span th:text="${user.age}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+
+    <a th:href="@{/user}">Quay lại form đăng ký</a>
+</div>
+</body>
+</html>

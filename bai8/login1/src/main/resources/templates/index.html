@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký User</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        span.error {
+            color: red;
+            font-size: 0.85em;
+            margin-top: 3px;
+            display: block;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Form đăng ký User</h2>
+
+    <form th:action="@{/user/submit}" th:object="${user}" method="post">
+
+        <div>
+            <label>First name:</label>
+            <input type="text" th:field="*{firstname}" placeholder="Nhập firstname"/>
+            <span class="error" th:if="${#fields.hasErrors('firstname')}"
+                  th:errors="*{firstname}"></span>
+        </div>
+
+        <div>
+            <label>Last name:</label>
+            <input type="text" th:field="*{lastname}" placeholder="Nhập lastname"/>
+            <span class="error" th:if="${#fields.hasErrors('lastname')}"
+                  th:errors="*{lastname}"></span>
+        </div>
+
+        <div>
+            <label>Số điện thoại:</label>
+            <input type="text" th:field="*{phoneNumber}" placeholder="Nhập SĐT"/>
+            <span class="error" th:if="${#fields.hasErrors('phoneNumber')}"
+                  th:errors="*{phoneNumber}"></span>
+        </div>
+
+        <div>
+            <label>Tuổi:</label>
+            <input type="number" th:field="*{age}" placeholder="Nhập tuổi"/>
+            <span class="error" th:if="${#fields.hasErrors('age')}"
+                  th:errors="*{age}"></span>
+        </div>
+
+        <div>
+            <label>Email:</label>
+            <input type="email" th:field="*{email}" placeholder="Nhập email"/>
+            <span class="error" th:if="${#fields.hasErrors('email')}"
+                  th:errors="*{email}"></span>
+        </div>
+
+        <div>
+            <button type="submit">Đăng ký</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
