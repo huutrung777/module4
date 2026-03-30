@@ -69,65 +69,55 @@
             font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
         button:hover {
             background-color: #45a049;
-        }
-
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            color: #4CAF50;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 <div class="container">
     <h2>Form đăng ký User</h2>
-
-    <form th:action="@{/user/submit}" th:object="${user}" method="post">
+    <form th:action="@{/user/submit}" th:object="${userDto}" method="post">
 
         <div>
             <label>First name:</label>
             <input type="text" th:field="*{firstname}" placeholder="Nhập firstname"/>
-            <span class="error" th:if="${#fields.hasErrors('firstname')}"
+            <span class="error"
+                  th:if="${#fields.hasErrors('firstname')}"
                   th:errors="*{firstname}"></span>
         </div>
 
         <div>
             <label>Last name:</label>
             <input type="text" th:field="*{lastname}" placeholder="Nhập lastname"/>
-            <span class="error" th:if="${#fields.hasErrors('lastname')}"
+            <span class="error"
+                  th:if="${#fields.hasErrors('lastname')}"
                   th:errors="*{lastname}"></span>
         </div>
 
         <div>
             <label>Số điện thoại:</label>
             <input type="text" th:field="*{phoneNumber}" placeholder="Nhập SĐT"/>
-            <span class="error" th:if="${#fields.hasErrors('phoneNumber')}"
+            <span class="error"
+                  th:if="${#fields.hasErrors('phoneNumber')}"
                   th:errors="*{phoneNumber}"></span>
         </div>
 
         <div>
             <label>Tuổi:</label>
             <input type="number" th:field="*{age}" placeholder="Nhập tuổi"/>
-            <span class="error" th:if="${#fields.hasErrors('age')}"
+            <span class="error"
+                  th:if="${#fields.hasErrors('age')}"
                   th:errors="*{age}"></span>
         </div>
 
         <div>
             <label>Email:</label>
             <input type="email" th:field="*{email}" placeholder="Nhập email"/>
-            <span class="error" th:if="${#fields.hasErrors('email')}"
+            <span class="error"
+                  th:if="${#fields.hasErrors('email')}"
                   th:errors="*{email}"></span>
         </div>
 
