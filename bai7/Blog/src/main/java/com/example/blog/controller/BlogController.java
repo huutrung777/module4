@@ -1,7 +1,6 @@
 package com.example.blog.controller;
 
 import com.example.blog.entity.Blog;
-import com.example.blog.repository.IBlogRepository;
 import com.example.blog.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 th:text="${p.name}"></h2>
+<img th:src="${p.image}" width="300">
+<p th:text="${p.price}"></p>
+
+<a th:href="@{/cart/add(id=${p.id})}">
+    <button>MUA NGAY</button>
+</a>
+</body>
+</html>

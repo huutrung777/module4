@@ -1,4 +1,4 @@
-package com.example.login1.entity;
+package com.example.gio_hang.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,17 +10,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+@Setter
+@Getter
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String firstname;
-    private String lastname;
-    private String phoneNumber;
-    private Integer age;
-    private String email;
+    private Integer id;
+
+    private String name;
+    private double price;
+    private String image;
 }
