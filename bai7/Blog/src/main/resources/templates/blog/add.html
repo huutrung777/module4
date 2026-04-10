@@ -2,158 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Thêm bài viết mới</title>
+  <title>Thêm bài viết</title>
   <style>
-    /* Đồng bộ tông màu với trang List */
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: #f8f9fa; /* Nền xám nhạt */
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 600px;
-      background: white;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* Đổ bóng mịn */
-    }
-
-    h2 {
-      color: #2c3e50; /* Màu Navy giống tiêu đề List */
-      margin-top: 0;
-      margin-bottom: 30px;
-      text-align: center;
-      font-weight: 600;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 15px;
-    }
-
-    /* Form styling */
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #34495e;
-      font-size: 14px;
-    }
-
-    input[type="text"],
-    textarea {
-      width: 100%;
-      padding: 12px 15px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      box-sizing: border-box;
-      font-size: 15px;
-      transition: all 0.3s;
-      background-color: #fff;
-    }
-
-    /* Hiệu ứng khi click vào ô nhập liệu */
-    input:focus, textarea:focus {
-      border-color: #3498db;
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 140px;
-    }
-
-    /* Nút bấm đồng bộ với trang List */
-    .btn-group {
-      display: flex;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .btn-save {
-      flex: 2;
-      background-color: #27ae60; /* Màu xanh lá thành công */
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .btn-save:hover {
-      background-color: #219150;
-      transform: translateY(-1px); /* Hiệu ứng nhấc nhẹ nút */
-    }
-
-    .btn-back {
-      flex: 1;
-      background-color: #95a5a6; /* Màu xám trung tính */
-      color: white;
-      text-decoration: none;
-      text-align: center;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: 600;
-      transition: 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .btn-back:hover {
-      background-color: #7f8c8d;
-    }
-
-    /* Placeholder style */
-    ::placeholder {
-      color: #ccc;
-      font-size: 14px;
-    }
+    body { font-family: Arial; background: #f4f6f9; display:flex; justify-content:center; align-items:center; height:100vh;}
+    .box { background:white; padding:30px; width:500px; border-radius:10px; box-shadow:0 0 10px #ccc;}
+    input, textarea, select { width:100%; padding:10px; margin-top:5px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px;}
+    button { background:#28a745; color:white; padding:10px; border:none; border-radius:5px; width:100%;}
+    a { display:block; text-align:center; margin-top:10px;}
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>Tạo bài viết mới</h2>
+<div class="box">
+  <h2>Thêm bài viết</h2>
 
   <form th:action="@{/blog/add}" th:object="${blog}" method="post">
 
-    <div class="form-group">
-      <label for="tieuDe">Tiêu đề bài viết</label>
-      <input type="text" th:field="*{tieuDe}" id="tieuDe" placeholder="Nhập tiêu đề hấp dẫn..." required />
-    </div>
+    <label>Tiêu đề</label>
+    <input type="text" th:field="*{tieuDe}" required>
 
-    <div class="form-group">
-      <label for="tomTat">Tóm tắt ngắn</label>
-      <input type="text" th:field="*{tomTat}" id="tomTat" placeholder="Mô tả sơ lược về nội dung" />
-    </div>
+    <label>Tóm tắt</label>
+    <input type="text" th:field="*{tomTat}">
 
-    <div class="form-group">
-      <label for="noiDung">Nội dung chi tiết</label>
-      <textarea th:field="*{noiDung}" id="noiDung" placeholder="Chia sẻ kiến thức của bạn tại đây..."></textarea>
-    </div>
+    <label>Nội dung</label>
+    <textarea th:field="*{noiDung}"></textarea>
 
-    <div class="form-group">
-      <label for="tacGia">Tác giả</label>
-      <input type="text" th:field="*{tacGia}" id="tacGia" placeholder="Tên của bạn hoặc biệt danh" />
-    </div>
+    <label>Tác giả</label>
+    <input type="text" th:field="*{tacGia}">
 
-    <div class="btn-group">
-      <button type="submit" class="btn-save">Đăng bài viết</button>
-      <a th:href="@{/blog}" class="btn-back">Hủy bỏ</a>
-    </div>
+    <label>Danh mục</label>
+    <select th:field="*{category.id}" required>
+      <option value="">--Chọn danh mục--</option>
+      <option th:each="c : ${categories}"
+              th:value="${c.id}"
+              th:text="${c.name}">
+      </option>
+    </select>
+
+    <button type="submit">Thêm</button>
+    <a th:href="@{/blog}">Quay lại</a>
   </form>
 </div>
 

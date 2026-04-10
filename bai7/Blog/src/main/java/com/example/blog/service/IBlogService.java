@@ -14,5 +14,5 @@ public interface IBlogService {
     void update(Blog blog);
     Page<Blog> findAll(Pageable pageable);
     Page<Blog> search(String tieuDe, Pageable pageable);
-
+    Page<Blog> findByCategory(int categoryId, Pageable pageable);
 }

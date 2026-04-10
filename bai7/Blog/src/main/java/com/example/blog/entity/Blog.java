@@ -1,26 +1,33 @@
 package com.example.blog.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Getter
+@Setter
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String tieuDe;
+
     @Column(columnDefinition = "TEXT")
     private String tomTat;
+
     @Column(columnDefinition = "TEXT")
     private String noiDung;
-    private String tacGia;
-    
 
+    private String tacGia;
+
+    private LocalDateTime createDate;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }

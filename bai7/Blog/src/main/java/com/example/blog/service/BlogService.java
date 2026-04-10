@@ -8,10 +8,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class BlogService implements IBlogService {
+
     @Autowired
     private IBlogRepository blogRepository;
+
     @Override
     public List<Blog> findAll() {
         return blogRepository.findAll();
@@ -34,7 +37,7 @@ public class BlogService implements IBlogService {
 
     @Override
     public void update(Blog blog) {
-blogRepository.save(blog);
+        blogRepository.save(blog);
     }
 
     @Override
@@ -44,7 +47,11 @@ blogRepository.save(blog);
 
     @Override
     public Page<Blog> search(String tieuDe, Pageable pageable) {
-        return blogRepository.search(tieuDe, pageable);
+        return blogRepository.findByTieuDeContaining(tieuDe, pageable);
     }
 
+    @Override
+    public Page<Blog> findByCategory(int categoryId, Pageable pageable) {
+        return blogRepository.findByCategory_Id(categoryId, pageable);
+    }
 }
